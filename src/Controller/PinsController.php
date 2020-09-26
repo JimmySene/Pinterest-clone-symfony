@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 class PinsController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/", name="app_home")
      */
     public function index(PinRepository $repo)
     {
@@ -20,7 +20,7 @@ class PinsController extends AbstractController
     }
 
     /**
-     * @Route("/pins/create")
+     * @Route("/pins/create", methods="GET|POST")
      */
     public function create(Request $request, EntityManagerInterface $em)
     {
@@ -33,7 +33,7 @@ class PinsController extends AbstractController
             $em->persist($pin);
             $em->flush();
 
-            return $this->redirect("/");
+            return $this->redirectToRoute('app_home');
         }
         
         return $this->render('pins/create.html.twig');

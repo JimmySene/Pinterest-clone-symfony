@@ -1,11 +1,14 @@
 <body>
 <p><a href={{path('app_pins_create')}}>Ajouter un pin</a></p>
-<h1>All Pins</h1>
+<h1>Tous les pins</h1>
 
 {% for pin in pins %}
 <article>
     <h2>{{ pin.title }}</h2>
     <p>{{ pin.description }}</p>
 </article>
+{% else %}
+<p>Désolé, aucun pins disponible !</p>
 {% endfor %}
+
 </body>

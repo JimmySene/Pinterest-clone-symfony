@@ -21,6 +21,14 @@ class PinsController extends AbstractController
     }
 
     /**
+     * @Route("pins/{id<[0-9]+>}", name="app_pins_show")
+     */
+    public function show(Pin $pin)
+    {
+        return $this->render('pins/show.html.twig', compact('pin'));
+    }
+
+    /**
      * @Route("/pins/create", methods="GET|POST")
      */
     public function create(Request $request, EntityManagerInterface $em)

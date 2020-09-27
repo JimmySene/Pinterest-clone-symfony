@@ -8,6 +8,8 @@ use App\Entity\Pin;
 use App\Repository\PinRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class PinsController extends AbstractController
 {
@@ -24,18 +26,28 @@ class PinsController extends AbstractController
      */
     public function create(Request $request, EntityManagerInterface $em)
     {
-        if ($request->isMethod('POST')) {
-            $data = $request->request->all();
+        $form = $this->createFormBuilder()
+        ->add('title')
+        ->add('description', TextareaType::class)
+        ->add('submit', SubmitType::class, ['label' => 'envoyer'])
+        ->getForm();
+
+        
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
             $pin = new Pin();
             $pin->setTitle($data['title']);
-            $pin->setDescription(($data['description']));
-
+            $pin->setDescription($data['description']);
             $em->persist($pin);
             $em->flush();
 
             return $this->redirectToRoute('app_home');
         }
+
         
-        return $this->render('pins/create.html.twig');
+
+        return $this->render('pins/create.html.twig', ['pinsForm' => $form->createView()]);
     }
 }

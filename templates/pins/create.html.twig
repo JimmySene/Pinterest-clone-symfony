@@ -1,15 +1,4 @@
 <body>
 <h1>Create Pin</h1>
-
-<form method="post" action="">
-    <div>
-        <label for="title">Titre : </label><input type="text" name="title" id="title">
-    </div>
-    <div>
-        <label for="description">Description : </label><textarea id="description" name="description" cols="60" rows="10"></textarea>
-    </div>
-    <div>
-        <input type="submit" value="Envoyer">
-    </div>
-</form>
+{{ form(pinsForm) }}
 </body>

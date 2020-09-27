@@ -9,7 +9,6 @@ use App\Repository\PinRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class PinsController extends AbstractController
 {
@@ -30,8 +29,7 @@ class PinsController extends AbstractController
 
         $form = $this->createFormBuilder($pin)
         ->add('title')
-        ->add('description', TextareaType::class, ['attr'=>['cols'=>50, 'rows' => 10]])
-        ->add('submit', SubmitType::class, ['label' => 'envoyer'])
+        ->add('description', null, ['attr'=>['cols'=>50, 'rows' => 10]])
         ->getForm();
         
         $form->handleRequest($request);

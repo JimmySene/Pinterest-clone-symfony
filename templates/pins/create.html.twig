@@ -1,4 +1,9 @@
 <body>
 <h1>Create Pin</h1>
-{{ form(pinsForm) }}
+{{ form_start(pinsForm) }}
+    {{form_widget(pinsForm)}}
+
+    <input type="submit" value="Create Pin">
+{{ form_end(pinsForm) }}
+
 </body>

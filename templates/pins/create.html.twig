@@ -1,4 +1,6 @@
-<body>
+{% extends "base.html.twig" %}
+{% block body %}
+
 <h1>Create Pin</h1>
 {{ form_start(pinsForm) }}
     {{form_widget(pinsForm)}}
@@ -6,4 +8,6 @@
     <input type="submit" value="Create Pin">
 {{ form_end(pinsForm) }}
 
-</body>
+{% endblock %}
+
+
